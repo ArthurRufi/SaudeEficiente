@@ -13,7 +13,7 @@ O sistema de gestão para o "Saude Eficiente" conta com uma serie de beneficios 
 #### Para o Usuario
 - Disponibilidade de Medicos
 - Disponibilidade de vacinação
-- Receita Online]
+- Receita Online
 - Dicas
 - Mapeamento para agentes de saude
 - Assistencia social
