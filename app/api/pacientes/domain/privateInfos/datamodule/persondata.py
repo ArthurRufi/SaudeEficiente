@@ -1,10 +1,12 @@
 # tratar todas as entradas pessoais de usuarios 
 
-
+# A troca de dados e confirmação não deve ser feita diretamente por CPF e sim por um ID unico no sistema que vai cruzar os dados com o cpf em outro serviço no backend somente para 
+# validação de dados, evitando assim o trafego desnecessário de dados sensíveis.
 class PatientPersonalData:
-    def __init__(self, name: str, age: int, address: str, phone_number: str, email: str, principal_parent_name: str = None, principal_parent_contact: str = None):
+    def __init__(self, name: str, date_age: str, id: str, address: str, phone_number: str, email: str, principal_parent_name: str = None, principal_parent_contact: str = None):
         self._name = name
-        self._age = age
+        self._date_age = date_age
+        self._id = id
         self._address = address
         self._phone_number = phone_number
         self._email = email
@@ -19,13 +21,13 @@ class PatientPersonalData:
             raise ValueError("Nome deve ser uma string válida")
         self._name = name.strip()
     
-    def get_age(self):
-        return self._age
+    def get_date_age(self):
+        return self._date_age
     
-    def set_age(self, age: int):
-        if not isinstance(age, int) or age < 0 or age > 150:
-            raise ValueError("Idade deve ser um número entre 0 e 150")
-        self._age = age
+    def set_date_age(self, date_age: str):
+        if not date_age or not isinstance(date_age, str):
+            raise ValueError("Data de nascimento inválida")
+        self._date_age = date_age
     
     def get_address(self):
         return self._address
