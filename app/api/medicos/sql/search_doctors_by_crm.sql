@@ -1,2 +1,2 @@
 SELECT nome, crm_numero FROM doctors 
-WHERE phone = :phone;
+WHERE crm_numero = :crm_numero;
