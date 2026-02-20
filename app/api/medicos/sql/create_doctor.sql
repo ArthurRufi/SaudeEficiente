@@ -1,16 +1,18 @@
 INSERT INTO doctors (
-    name,
-    crm,
+    nome,
+    crm_numero,
+    crm_uf,
     specialty,
     email,
     phone,
     is_active,
-    created_at,
-    updated_at
+    create_at,
+    update_at
 )
 VALUES (
     :name,
-    :crm,
+    :crm_numero,
+    :crm_uf,
     :specialty,
     :email,
     :phone,

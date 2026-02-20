@@ -15,7 +15,8 @@ class DoctorBase(BaseModel):
 class DoctorCreate(BaseModel):
     name: str
     specialty: str
-    crm: str
+    crm_numero: str
+    crm_uf: str
     email: EmailStr
     phone: str
 

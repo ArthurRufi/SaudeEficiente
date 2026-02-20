@@ -24,3 +24,12 @@ async def get_doctor_by_crm(crm_numero: str):
         doctor = result.mappings().first()
         print(doctor)
         return doctor
+    
+async def create_doctor(doctor_data):
+    async with engine.connect() as conn:
+        result = await conn.execute(
+            text(load_query("create_doctor.sql")),
+            doctor_data.dict()
+        )
+        await conn.commit()
+        return result.fetchone()
