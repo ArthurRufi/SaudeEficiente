@@ -13,7 +13,7 @@ def consultar_doutor():
 
     return {"message": "Consultando doutor..."}
 
-@app.get("/consultardoutorpornm/{phone}")
+@app.get("/consultardoutorpornome/{phone}")
 async def consultar_doutor_por_telefone(phone: str):
     print(f"Consultando doutor com telefone {phone}...")
     doctor = await get_doctor_by_phone(phone)
@@ -24,3 +24,7 @@ async def consultar_doutor_por_crm(crm: str):
     print(f"Consultando doutor com CRM {crm}...")
     doctor = await get_doctor_by_crm(crm)
     return {"message": f"Consultando doutor com CRM {crm}", "doctor": doctor}
+
+@app.post("/cadastrardoutor")
+def cadastrar_doutor(data: DoctorCreate):
+    return {"message": f"Cadastrando doutor com nome {data.name}...", "received_data": data}

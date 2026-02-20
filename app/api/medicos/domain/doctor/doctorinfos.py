@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime
 from enum import Enum
+from uuid import UUID
 
 class DoctorSpecialty(Enum):
     """Medical specialties"""
@@ -16,7 +17,7 @@ class DoctorSpecialty(Enum):
 @dataclass
 class DoctorInfo:
     """Doctor information domain model"""
-    id: str
+    id: UUID
     name: str
     crm: str  # Medical registration number
     specialty: DoctorSpecialty

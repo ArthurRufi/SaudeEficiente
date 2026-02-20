@@ -1,20 +1,27 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
+from uuid import UUID
+from ..domain.doctor.doctorinfos import DoctorInfo
+
 
 class DoctorBase(BaseModel):
     name: str
-    specialization: str
+    specialty: str
     crm: str
     email: EmailStr
     phone: Optional[str] = None
 
-class DoctorCreate(DoctorBase):
-    pass
+class DoctorCreate(BaseModel):
+    name: str
+    specialty: str
+    crm: str
+    email: EmailStr
+    phone: str
 
 class DoctorUpdate(BaseModel):
     name: Optional[str] = None
-    specialization: Optional[str] = None
+    specialty: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
 
