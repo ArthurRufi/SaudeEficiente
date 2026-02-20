@@ -1,1 +1,2 @@
-Criar definicao completa de cadastro e modificacao de medicos 
+Criar modificacao de medicos
+Criar validações de servidor
