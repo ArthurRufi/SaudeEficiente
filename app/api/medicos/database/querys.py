@@ -33,3 +33,12 @@ async def create_doctor(doctor_data):
         )
         await conn.commit()
         return result.fetchone()
+    
+async def update_doctor(doctor_id: int, doctor_data):
+    async with engine.connect() as conn:
+        result = await conn.execute(
+            text(load_query("update_doctor.sql")),
+            {"id": doctor_id, **doctor_data.dict(exclude_unset=True)}
+        )
+        await conn.commit()
+        return result.fetchone()
