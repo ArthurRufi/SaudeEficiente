@@ -34,11 +34,34 @@ async def create_doctor(doctor_data):
         await conn.commit()
         return result.fetchone()
     
-async def update_doctor(doctor_id: int, doctor_data):
+def build_update_query(fields: dict) -> str:
+    set_clauses = []
+
+    for field in fields.keys():
+        set_clauses.append(f"{field} = :{field}")
+
+    set_statement = ", ".join(set_clauses)
+
+    return f"""
+        UPDATE doctors
+        SET {set_statement},
+            update_at = NOW()
+        WHERE crm_numero = :crm_numero
+        RETURNING *;
+    """
+
+async def update_doctor(crm_numero: str, data: dict):
+
+    if not data:
+        raise ValueError("No fields to update")
+
+    query = build_update_query(data)
+
     async with engine.connect() as conn:
         result = await conn.execute(
-            text(load_query("update_doctor.sql")),
-            {"id": doctor_id, **doctor_data.dict(exclude_unset=True)}
+            text(query),
+            {"crm_numero": crm_numero, **data}
         )
         await conn.commit()
+
         return result.fetchone()
