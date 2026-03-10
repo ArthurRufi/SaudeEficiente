@@ -15,7 +15,7 @@ class PatientPersonalData(BaseModel):
     phone_number: str = Field(regex=r"^\+?\d{10,15}$")
     email: EmailStr
 
-    principal_parent_name: Optional[str] = None
+    principal_parent_name: Optional[str] = None 
     principal_parent_contact: Optional[str] = None
 
     class Config:
