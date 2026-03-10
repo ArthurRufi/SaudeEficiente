@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from medicos.domain.doctor.doctorinfos import DoctorInfo, DoctorSpecialty, datetime
 from medicos.models.models import Doctor, DoctorCreate, DoctorUpdate
 from medicos.database.querys import get_doctor_by_phone, get_doctor_by_crm, create_doctor, update_doctor
+from pacientes.database.querys import consultarPaciente
 app = FastAPI()
 
 @app.get("/")
@@ -53,3 +54,11 @@ async def atualizar_doutor(crm_numero: str, data: DoctorUpdate):
         "message": "Doutor atualizado com sucesso",
         "doctor": dict(updated_doctor._mapping)
     }
+
+# PACIENTES
+# _______________________________________________________________________#
+@app.get("/consultarpaciente/{id}")
+async def search_pacientes(id: str):
+    print(f"Consultando paciente por id {id}")
+    paciente =  await consultarPaciente(id)
+    return {"message": f"Consultando a mizera do paciente {id}", "pacitene" : paciente} 
